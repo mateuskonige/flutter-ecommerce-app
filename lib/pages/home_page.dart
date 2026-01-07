@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/components/bottom_nav_bar.dart';
+import 'package:ecommerce_app/components/drawer_nav.dart';
 import 'package:ecommerce_app/pages/cart_page.dart';
 import 'package:ecommerce_app/pages/shop_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: Icon(Icons.menu),
+          ),
+        ),
+      ),
+      drawer: DrawerNav(),
       body: _pages[_selectedTab],
       bottomNavigationBar: BottomNavBar(
         onTabChange: (index) => navigateTo(index),
