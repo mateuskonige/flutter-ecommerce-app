@@ -40,10 +40,7 @@ class ShoeTile extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      shoe.price,
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
+                    Text(shoe.price, style: TextStyle(color: Colors.grey)),
                   ],
                 ),
               ),
