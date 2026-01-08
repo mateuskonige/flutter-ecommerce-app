@@ -48,7 +48,7 @@ class ShoeTile extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 24,
                     fontStyle: FontStyle.italic,
-                    color: Colors.grey[700],
+                    color: Colors.black,
                   ),
                 ),
               ),
