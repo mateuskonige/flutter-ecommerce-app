@@ -16,37 +16,40 @@ class ShoeTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
+        spacing: 12,
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        spacing: 24,
         children: [
           ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(24),
             child: SizedBox(height: 200, child: Image.asset(shoe.imagePath)),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Text(shoe.description, style: TextStyle(color: Colors.grey)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  shoe.name,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Text(shoe.description, style: TextStyle(color: Colors.grey)),
+              ],
+            ),
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      shoe.name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(shoe.price, style: TextStyle(color: Colors.grey)),
-                  ],
+                child: Text(
+                  "\$${shoe.price},00",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.grey[700],
+                  ),
                 ),
               ),
               GestureDetector(
