@@ -9,6 +9,18 @@ class ShopPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void addShoeToCart(Shoe shoe) {
+      Provider.of<Cart>(context, listen: false).addItemToCart(shoe);
+
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("${shoe.name} added successfully"),
+          content: Text("Check your cart"),
+        ),
+      );
+    }
+
     return Consumer<Cart>(
       builder: (context, value, child) => Scaffold(
         backgroundColor: Colors.grey[200],
@@ -67,23 +79,21 @@ class ShopPage extends StatelessWidget {
 
               //shoes card list
               SizedBox(
-                height: 320,
+                height: 340,
                 child: ListView.separated(
                   padding: EdgeInsets.symmetric(horizontal: 24),
-                  itemCount: 5,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: value.getShoeList().length,
+                  itemBuilder: (context, index) {
+                    Shoe shoe = value.getShoeList()[index];
+
+                    return ShoeTile(
+                      shoe: shoe,
+                      onTap: () => addShoeToCart(shoe),
+                    );
+                  },
                   separatorBuilder: (context, index) {
                     return SizedBox(width: 24);
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    Shoe shoe = Shoe(
-                      name: "Air Force",
-                      price: "240",
-                      imagePath: "lib/images/airmax.png",
-                      description: "Air Force Description",
-                    );
-
-                    return ShoeTile(shoe: shoe);
                   },
                 ),
               ),
